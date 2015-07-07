@@ -7,6 +7,7 @@ class CartsController < ApplicationController
 	end
 
   def edit
+  	# where is this getting called?
   	@item = item
   	Cart.create(@item.id, @item.title, @item.description,  @item.price_pie)
   end

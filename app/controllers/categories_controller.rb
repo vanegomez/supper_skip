@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 	before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-	def new
+	def new #compare to admin
 		@category = Category.new
 	end
 
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 	end
 
-	def create
+	def create #compare to admin
 		@category = Category.new(category_params)
 
 		respond_to do |format|
@@ -25,10 +25,10 @@ class CategoriesController < ApplicationController
 		end
 	end
 
-	def edit
+	def edit #compare to admin
 	end
 
-	def update
+	def update #compare to admin
 		respond_to do |format|
 			if @category.update(category_params)
 				format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully updated.'}
@@ -38,12 +38,13 @@ class CategoriesController < ApplicationController
 		end
 	end
 
-	def destroy
+	def destroy #compare to admin
 		@category.destroy
 
 		redirect_to admin_categories_path
 	end
 
+#compare to admin
 	private
 
 		def set_category

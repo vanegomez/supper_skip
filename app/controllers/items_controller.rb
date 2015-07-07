@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 	before_action	:set_item, only: [:show, :edit, :update, :destroy]
 
-	def new
+	def new #compare to admin
 		@item = Item.new
 	end
 
@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
 
 	end
 
-	def create
+	def create #compare to admin
 		@item = Item.new(item_params)
 		if @item.save
 			@item.categories_list(params['item']['categories'])
@@ -25,10 +25,10 @@ class ItemsController < ApplicationController
 		end
 	end
 
-	def edit
+	def edit #compare to admin
 	end
 
-	def update
+	def update #compare to admin
 		if @item.update(item_params)
 			@item.categories_list(params['item']['categories'])
 			flash.notice = 'Item was successfully updated.'
@@ -38,13 +38,13 @@ class ItemsController < ApplicationController
 		end
 	end
 
-	def destroy
+	def destroy #compare to admin
 		if @item.destroy
 			redirect_to admin_items_path, notice: 'Item was successfully deleted.'
 		end
 	end
 
-
+#maybe remove private methods
 	private
 		def set_item
 			@item = Item.find(params[:id])

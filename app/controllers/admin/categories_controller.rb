@@ -1,3 +1,4 @@
+#inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::CategoriesController < ApplicationController
 	before_action	:set_category, 	only: [:show, :edit, :update, :destroy]
 	before_action :authorize?, 		only: [:show, :create, :edit, :update, :destroy]
