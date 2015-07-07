@@ -8,6 +8,10 @@ group :development, :test do
 	gem 'pry'
   gem 'launchy'
 	gem 'aasm', '~> 3.3.3'
+  gem 'simplecov', :require => false
+  gem 'byebug'
+  gem 'brakeman', :require => false
+  gem 'better_errors'
 end
 
 gem "paperclip", "~> 4.1"
