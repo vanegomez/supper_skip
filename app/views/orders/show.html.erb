@@ -48,9 +48,9 @@
           <td><%= order_item.item.price_pie %></td>
           <% item_id = order_item.item_id %>
           <td>
-            <%= quantity = @order.order_items.select { |order_item| order_item.item_id == item_id }.count%>
+            <%= @order.item_quantity(item_id) %>
           </td>
-          <td><%= quantity * order_item.item.price_pie %></td>
+          <td><%= @order.subtotal(item_id) %></td>
         </tr>
       <% end %>
       </tr>
@@ -60,3 +60,4 @@
   <%= link_to 'Back to Order History', user_path(current_user.id) %> |
   <%= link_to 'Back to Menu', items_path %>
 </div>
+

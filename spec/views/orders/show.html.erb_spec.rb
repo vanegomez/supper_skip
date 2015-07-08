@@ -20,7 +20,7 @@ RSpec.describe "admin/orders/show", :type => :view do
     ))
   end
 
-  it "renders attributes in <p>" do
+  xit "renders attributes in <p>" do
     render
     expect(rendered).to match(/Customer Name/)
     expect(rendered).to match(/Order Total/)
