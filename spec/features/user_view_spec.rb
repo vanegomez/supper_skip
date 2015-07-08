@@ -18,6 +18,18 @@ describe 'a user signs in and views their user page', type: :feature do
       page.click_button('Sign in')
       expect(page.current_path).to eq(user_path(user))
     end
+
+    it 'can login and destroy the session or logout' do
+      page.visit signin_path
+      page.fill_in('session[email]',    with: user.email)
+      page.fill_in('session[password]', with: 'password')
+      page.click_button('Sign in')
+      expect(page.current_path).to eq(user_path(user))
+      page.click_link('Your Account')
+      page.click_link('Sign Out')
+      expect(page.current_path).to eq(items_path)
+
+    end
   end
 
   context "invalid user functionality" do
