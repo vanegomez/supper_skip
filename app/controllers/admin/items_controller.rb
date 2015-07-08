@@ -1,3 +1,4 @@
+#inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::ItemsController < ApplicationController
 	before_action	:set_item, only: [:show, :edit, :update, :destroy, :retire]
 	before_action :authorize?, only: [:show, :create, :edit, :update, :destroy, :retire]
@@ -11,6 +12,7 @@ class Admin::ItemsController < ApplicationController
 	end
 
  def update
+ 	# duplicate
 		@item = Item.find(params[:id])
  end
 

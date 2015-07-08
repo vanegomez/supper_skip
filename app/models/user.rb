@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
 
+# why are tokens not defined in session/user controller or session/user helper?
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

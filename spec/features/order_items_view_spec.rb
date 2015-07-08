@@ -28,6 +28,9 @@ describe 'the order_items view', type: :feature do
         visit items_path(order_id: order.id)
       end
 
+      # the order and the item above are not connected
+      # need to rewrite the above and below tests
+
       it 'has a new page with items' do
         expect(page).to have_content(Item.first.title)
       end

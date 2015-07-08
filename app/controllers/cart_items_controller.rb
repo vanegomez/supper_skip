@@ -1,3 +1,5 @@
+#Consider refactoring
+
 class CartItemsController < ApplicationController
   def create
     # FIXME: Start here

@@ -28,4 +28,8 @@ describe 'the admin order view', type: :feature do
 
 
 	end
+
+  # looks like the previous group ran out of time to write these test
+  # they want to be able to see all of the orders and see all of the statuses
+
 end

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root "welcome#index"
+  root "welcome#index" #consolidate with About controller
 
-  resources :items
-  resources :categories
-  resources :orders do
-    resources :order_items do
+  resources :items, only: [:show, :index]
+  resources :categories #only necessary methods
+  resources :orders do #consider rerouting?
+    resources :order_items do #where are these methods getting called? consider removing
       get :increment, on: :member
       get :decrement, on: :member
     end
@@ -35,14 +35,15 @@ Rails.application.routes.draw do
   get     '/order_items/new'  => 'order_items#new',         as: :new_order_item
   post    '/order_items'      => 'order_items#create',      as: :order_items
 
-  get     '/about_us'          => 'about_us#index' 
+# consolidate with welcome controller/move to application controller?
+  get     '/about_us'          => 'about_us#index'
 
   namespace :admin do
     resources :admin
     resources :items
     resources :categories
     resources :orders do
-      resources :order_items do
+      resources :order_items do # maybe remove, where is this getting called? controller hasn't been created for admin
         get :increment, on: :member
         get :decrement, on: :member
       end

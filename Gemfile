@@ -7,11 +7,12 @@ group :development, :test do
 	gem 'spring'
 	gem 'pry'
   gem 'launchy'
-	gem 'aasm', '~> 3.3.3'
+	gem 'aasm', '~> 3.3.3' #not found in files
   gem 'simplecov', :require => false
   gem 'byebug'
   gem 'brakeman', :require => false
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem "paperclip", "~> 4.1"

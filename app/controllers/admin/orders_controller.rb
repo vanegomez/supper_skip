@@ -1,5 +1,7 @@
+#inheret from Admin::AdminController and remove 'authorize?' method
+
 class Admin::OrdersController < ApplicationController
-  before_action	:set_order,   only: [:show, :edit, :update, :destroy, :cancel, :pay, :complete]
+  before_action	:set_order,  only: [:show, :edit, :update, :destroy, :cancel, :pay, :complete]
   before_action :authorize?,  only: [:index, :edit, :update, :destroy, :cancel, :pay, :complete]
 
   def index
@@ -15,22 +17,23 @@ class Admin::OrdersController < ApplicationController
   def show
   end
 
+# consider grouping status update methods and moving
   def cancel
     @order.order_status = "cancelled"
     @order.save
-    redirect_to admin_order_path(@order)
+    redirect_to admin_order_path(@order) #test whether this is necessary
   end
 
   def pay
     @order.order_status = "paid"
     @order.save
-    redirect_to admin_order_path(@order)
+    redirect_to admin_order_path(@order) #test whether this is necessary
   end
 
   def complete
     @order.order_status = 'completed'
     @order.save
-    redirect_to admin_order_path(@order)
+    redirect_to admin_order_path(@order) #test whether this is necessary
   end
 
   private
