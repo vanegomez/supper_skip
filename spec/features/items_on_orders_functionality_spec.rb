@@ -9,4 +9,8 @@ describe "user functionality related to items on order view", type: :feature do
   let(:order_item) {OrderItem.create!(order_id: order.id, item_id: keylime.id)}
   let(:user) {User.create!(full_name: "Data", email: "sample@example.com", password: "password")}
 
+  # a user would be able to view on their order and click on the item show page
+  # tests the item link on the items index page works
+  # they either didn't have time to finish this test or they realized its' covered elsewhere
+
 end

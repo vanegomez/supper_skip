@@ -1,3 +1,5 @@
+#look for methods that can be extracted to this class from other admin controllers
+
 class Admin::AdminController < ApplicationController
   before_action :authorize?
 
