@@ -54,6 +54,13 @@ RSpec.describe Order, :type => :model do
     expect(Order.all_count).to eq(3)
   end
 
-  it ''
+  it 'checks the status of an order' do
+    order_1 = Order.create(order_status: Order::Status::PAID, user_id: 1, order_total: 23, order_type: "pick-up")
+    order_2 = Order.create(order_status: Order::Status::ORDERED, user_id: 2, order_total: 12, order_type: "pick-up")
+    order_3 = Order.create(order_status: Order::Status::CANCELLED, user_id: 3, order_total: 15, order_type: "pick-up")
 
+    order_1.paid?
+    order_2.ordered?
+    order_3.cancelled?
+  end
 end
