@@ -13,4 +13,7 @@ describe 'a user viewing the items page', type: :feature do
   it "can see more than one category per one item" do
   end
 
+  # need to fill in the above. looks like they ran out of time
+  #
+
 end
