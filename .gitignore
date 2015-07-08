@@ -18,3 +18,8 @@
 
 coverage
 
+.idea
+.idea/workspace.xml
+.idea/supper_skip.iml
+.idea/runConfigurations/
+
