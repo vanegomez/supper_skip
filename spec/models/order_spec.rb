@@ -54,4 +54,6 @@ RSpec.describe Order, :type => :model do
     expect(Order.all_count).to eq(3)
   end
 
+  it ''
+
 end

@@ -15,6 +15,13 @@ RSpec.describe Category, :type => :model do
   	expect(category).not_to be_valid
   end
 
+  it 'is invalid without a unique name' do
+    category
+    category2 = Category.create(name: "Savory")
+
+    expect(category2).to_not be_valid
+  end
+
   it 'knows its items' do
     category.items.create(
     	id: 140,
@@ -32,5 +39,13 @@ RSpec.describe Category, :type => :model do
     results = category.items
 
     expect(results.count).to eq(2)
+  end
+
+  it 'responds to items' do
+    expect(category).to respond_to(:items)
+  end
+
+  it 'responds to categorizations' do
+    expect(category).to respond_to(:categorizations)
   end
 end
