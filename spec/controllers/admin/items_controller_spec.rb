@@ -49,6 +49,12 @@ RSpec.describe Admin::ItemsController, :type => :controller do
         post :create, {:item => item}
         expect(response).to redirect_to admin_item_path(Item.last)
       end
+
+      it "redirects to the new item page" do
+        post :create, {:item => {name: "", description: "", price_pie: 0}}
+        expect(response).to render_template(:new)
+      end
+
     end
   end
 end
