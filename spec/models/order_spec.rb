@@ -65,4 +65,26 @@ RSpec.describe Order, :type => :model do
     order_3.cancelled?
     order_4.complete?
   end
+
+  it 'gives the item quantity' do
+    item_1 = order.items.create(id: 140, title: 'Key Lime', description: 'Yum',  price_pie: 28.00)
+    item_2 = order.items.create(id: 125, title: 'Apple', description: 'Yum',  price_pie: 28.00)
+
+    quantity_1 = order.item_quantity(item_1.id)
+    quantity_2 = order.item_quantity(item_2.id)
+
+    expect(quantity_1).to eq(1)
+    expect(quantity_2).to eq(1)
+  end
+
+  it 'gives the subtotal of an item' do
+    item_1 = order.items.create(id: 140, title: 'Key Lime', description: 'Yum',  price_pie: 28.00)
+    item_2 = order.items.create(id: 125, title: 'Apple', description: 'Yum',  price_pie: 22.00)
+
+    subtotal_1 = order.subtotal(item_1.id)
+    subtotal_2 = order.subtotal(item_2.id)
+
+    expect(subtotal_1).to eq(28.00)
+    expect(subtotal_2).to eq(22.00)
+  end
 end

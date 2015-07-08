@@ -36,9 +36,7 @@ class Item < ActiveRecord::Base
     end
   end
 
-  # def to_s
-  #   title
-  # end
-
-
+  def to_s
+    title
+  end
 end
