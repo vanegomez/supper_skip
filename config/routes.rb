@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  get 'restaurants/new'
+
+  get 'restaurants/index'
+
+  get 'restaurants/edit'
+
   root "welcome#index" #consolidate with About controller
+
+  resources :restaurants, only: [:new, :create]
 
   resources :items, only: [:show, :index]
   resources :categories #only necessary methods
