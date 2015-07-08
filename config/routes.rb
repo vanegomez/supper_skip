@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "welcome#index" #consolidate with About controller
 
-  resources :items #only [:show, index]
+  resources :items, only: [:show, :index]
   resources :categories #only necessary methods
   resources :orders do #consider rerouting?
     resources :order_items do #where are these methods getting called? consider removing
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   post    '/order_items'      => 'order_items#create',      as: :order_items
 
 # consolidate with welcome controller/move to application controller?
-  get     '/about_us'          => 'about_us#index' 
+  get     '/about_us'          => 'about_us#index'
 
   namespace :admin do
     resources :admin
