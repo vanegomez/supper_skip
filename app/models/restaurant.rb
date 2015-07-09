@@ -10,7 +10,7 @@ class Restaurant < ActiveRecord::Base
   has_many :staff, through: :user_roles
 
   def generate_slug
-    if self.slug.nil?
+    if self.slug.empty?
       self.slug = name.parameterize
     else
       self.slug = self.slug.parameterize

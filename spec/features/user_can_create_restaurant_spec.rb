@@ -27,6 +27,8 @@ describe 'a user can register a restaurant', type: :feature do
     end
 
     it "lets you register a new restaurant" do
+      num_restaurants = Restaurant.count
+
       visit new_restaurant_path
 
       page.fill_in "Name", with: "Pies!"
@@ -34,7 +36,39 @@ describe 'a user can register a restaurant', type: :feature do
 
       click_button "Register Restaurant"
 
-      expect(current_path).to eq('/pie_slug')
+      expect(Restaurant.count).to eq(num_restaurants + 1)
     end
+
+    it "redirects to restaurant url and displays restaurant name when slug is given" do
+      visit new_restaurant_path
+
+      page.fill_in "Name", with: "Pies!"
+      page.fill_in "Slug", with: "pie_slug"
+
+      click_button "Register Restaurant"
+
+      expect(current_path).to eq(restaurant_path(restaurant: "pie_slug"))
+      within("h1") do
+        expect(page).to have_content("Pies!")
+      end
+    end
+
+    it "redirects to restaurant url and displays restaurant name if no slug is given" do
+      num_restaurants = Restaurant.count
+
+      visit new_restaurant_path
+
+      page.fill_in "Name", with: "Burgers!"
+
+      click_button "Register Restaurant"
+
+      expect(Restaurant.count).to eq(num_restaurants + 1)
+      expect(current_path).to eq(restaurant_path(restaurant: "burgers"))
+      within("h1") do
+        expect(page).to have_content("Burgers!")
+      end
+    end
+
   end
 end
+

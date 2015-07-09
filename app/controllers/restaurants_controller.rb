@@ -9,10 +9,14 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.save
       flash[:notice] = "Thank you for registering!"
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_path(restaurant: @restaurant.slug)
     else
       render :new
     end
+  end
+
+  def show
+    @restaurant = Restaurant.find_by(slug: params[:restaurant])
   end
 
   def index
