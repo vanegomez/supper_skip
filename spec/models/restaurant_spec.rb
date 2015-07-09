@@ -21,6 +21,12 @@ RSpec.describe Restaurant, :type => :model do
 		expect(restaurant.slug).to eq("pies")
 	end
 
+  it "ensures a slug is valid if given" do
+		restaurant = Restaurant.create(name: "Pies!", slug: "asdf&# asd")
+
+		expect(restaurant.slug).to eq("asdf-asd")
+	end
+
 	it "has a unique restaurant name" do
 		restaurant1 = Restaurant.create(valid_attributes)
 		restaurant2 = Restaurant.create(name: "Pies!", slug: "pie_store")
