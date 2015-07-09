@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, only: [:new, :create]
-  get '/:restaurant' => 'restaurants#show', as: :restaurant
+  get '/:slug' => 'restaurants#show', as: :restaurant
 
 
   resources :items, only: [:show, :index]

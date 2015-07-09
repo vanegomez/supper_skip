@@ -47,7 +47,7 @@ describe 'a user can register a restaurant', type: :feature do
 
       click_button "Register Restaurant"
 
-      expect(current_path).to eq(restaurant_path(restaurant: "pie_slug"))
+      expect(current_path).to eq(restaurant_path(slug: "pie_slug"))
       within("h1") do
         expect(page).to have_content("Pies!")
       end
@@ -63,7 +63,7 @@ describe 'a user can register a restaurant', type: :feature do
       click_button "Register Restaurant"
 
       expect(Restaurant.count).to eq(num_restaurants + 1)
-      expect(current_path).to eq(restaurant_path(restaurant: "burgers"))
+      expect(current_path).to eq(restaurant_path(slug: "burgers"))
       within("h1") do
         expect(page).to have_content("Burgers!")
       end

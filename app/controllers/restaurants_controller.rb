@@ -9,14 +9,14 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.save
       flash[:notice] = "Thank you for registering!"
-      redirect_to restaurant_path(restaurant: @restaurant.slug)
+      redirect_to restaurant_path(slug: @restaurant.slug)
     else
       render :new
     end
   end
 
   def show
-    @restaurant = Restaurant.find_by(slug: restaurant_slug)
+    @restaurant = Restaurant.find_by(slug: params[:slug])
   end
 
   def index
@@ -31,7 +31,7 @@ class RestaurantsController < ApplicationController
       params.require(:restaurant).permit(:name, :slug)
     end
 
-    def restaurant_slug
-      params.require(:restaurant)
-    end
+    # def restaurant_slug
+    #   params.require(:restaurant)
+    # end
 end
