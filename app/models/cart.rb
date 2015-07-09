@@ -9,3 +9,6 @@ class Cart < ActiveRecord::Base
 	has_many :items, through: :cart_items
 
 end
+
+
+# delete cart class and table, create cart in session

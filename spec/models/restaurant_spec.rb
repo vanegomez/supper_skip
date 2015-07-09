@@ -16,7 +16,7 @@ RSpec.describe Restaurant, :type => :model do
   end
 
   it "generates a slug if not given one" do
-    restaurant = Restaurant.create(name: "Pies!")
+    restaurant = Restaurant.create(name: "Pies!", slug: "")
 
     expect(restaurant.slug).to eq("pies")
   end
