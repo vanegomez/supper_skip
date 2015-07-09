@@ -21,6 +21,7 @@ class Order < ActiveRecord::Base
   has_many    :order_items
   has_many    :items, through: :order_items
   belongs_to  :user
+  belongs_to  :restaurant
 
   validates :user_id,          presence: true
   validates :order_total,      presence: true

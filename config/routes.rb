@@ -1,21 +1,18 @@
 Rails.application.routes.draw do
-  get 'restaurants/new'
 
-  get 'restaurants/index'
+  root "restaurants#index"
 
-  get 'restaurants/edit'
-
-  match '/', to: "restaurants#index", via: 'get', as: :root #consolidate with About controller
-
-  resources :restaurants, only: [:new, :create, :show] do
-    # namespace :a do
+  namespace :restaurants, as: :restaurant, path: '/:restaurant' do
+    resources :users
+    resources :orders
+    resources :items
   end
 
-  # namespace :restaurants, as: :restaurant, path: '/:restaurant' do
-  #   resources :items, only: [:show, :index]
-  # end
+  resources :restaurants, only: [:new, :create, :show]
 
-  resources :items, only: #only necessary methods
+
+  resources :items, only: [:show, :index]
+  resources :categories #only necessary methods
   resources :orders do #consider rerouting?
     resources :order_items do #where are these methods getting called? consider removing
       get :increment, on: :member
