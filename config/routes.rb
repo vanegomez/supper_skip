@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     # namespace :a do
   end
 
+  # namespace :restaurants, as: :restaurant, path: '/:restaurant' do
+  #   resources :items, only: [:show, :index]
+  # end
 
-  resources :items, only: [:show, :index]
-  resources :categories #only necessary methods
+  resources :items, only: #only necessary methods
   resources :orders do #consider rerouting?
     resources :order_items do #where are these methods getting called? consider removing
       get :increment, on: :member
