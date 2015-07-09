@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708191530) do
+ActiveRecord::Schema.define(version: 20150709052733) do
 
   create_table "cart_items", force: true do |t|
     t.integer  "cart_id"
@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(version: 20150708191530) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.boolean  "retire",                                       default: false
+    t.integer  "restaurant_id"
   end
+
+  add_index "items", ["restaurant_id"], name: "index_items_on_restaurant_id"
 
   create_table "order_items", force: true do |t|
     t.integer  "order_id"
@@ -70,7 +73,10 @@ ActiveRecord::Schema.define(version: 20150708191530) do
     t.string   "order_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "restaurant_id"
   end
+
+  add_index "orders", ["restaurant_id"], name: "index_orders_on_restaurant_id"
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
