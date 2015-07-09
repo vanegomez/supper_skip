@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  get 'restaurants/new'
 
-  get 'restaurants/index'
+  root "restaurants#index"
 
-  get 'restaurants/edit'
-
-  match '/', to: "restaurants#index", via: 'get', as: :root #consolidate with About controller
-
-  resources :restaurants, only: [:new, :create, :show] do
-    # namespace :a do
+  namespace :restaurants, as: :restaurant, path: '/:restaurant' do
+    resources :users
+    resources :orders
+    resources :items
   end
+
+  resources :restaurants, only: [:new, :create, :show]
 
 
   resources :items, only: [:show, :index]
