@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  root "welcome#index" #consolidate with About controller
+  get 'restaurants/new'
+
+  get 'restaurants/index'
+
+  get 'restaurants/edit'
+
+  match '/', to: "restaurants#index", via: 'get', as: :root #consolidate with About controller
+
+  resources :restaurants, only: [:new, :create, :show] do
+    # namespace :a do
+  end
+
 
   resources :items, only: [:show, :index]
   resources :categories #only necessary methods
