@@ -26,7 +26,7 @@ describe 'a user can register a restaurant', type: :feature do
       expect(current_path).to eq(new_restaurant_path)
     end
 
-    it "lets you register a new restaurant" do
+    xit "lets you register a new restaurant" do
       visit new_restaurant_path
 
       page.fill_in "Name", with: "Pies!"
