@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  # include SessionsHelper
   def new
   	@restaurant = Restaurant.new
   end

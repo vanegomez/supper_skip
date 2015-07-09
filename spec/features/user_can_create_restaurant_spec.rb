@@ -8,22 +8,26 @@ describe 'a user can register a restaurant', type: :feature do
                 :email        => "john_doe@example.com",
                 :display_name => "john_doe_123",
                 :role         => "user",
-                :password     => 'password')
+                :password     => 'password',
+                :password_confirmation => 'password')
   end
 
-  it "only allows a user to register a restaurant if they are logged in" do
+  it "only allows a user to see link to register a restaurant if they are logged in" do
     visit root_path
 
     expect(page).to_not have_link "Register a New Restaurant"
   end
 
   context "user is logged in" do
+    # before { allow(controller).to receive(:current_user) { user } }
+
     before(:each) do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow(ApplicationController).to receive(:current_user) { user }
     end
 
     it "redirects to a new restaurant page" do
       visit root_path
+      # expect(page).to have_content("Register a New Restaurant")
 
       click_link "Register a New Restaurant"
 

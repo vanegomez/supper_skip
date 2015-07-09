@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'restaurants/edit'
 
-  root "welcome#index" #consolidate with About controller
+  match '/', to: "restaurants#index", via: 'get', as: :root #consolidate with About controller
 
   resources :restaurants, only: [:new, :create]
 

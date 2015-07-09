@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_action :user_has_a_cart
   before_action :cart_count
 
+  helper_method :current_user
+
   def cart
     @cart ||= Cart.find session[:cart_id]
   end
