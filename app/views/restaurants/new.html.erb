@@ -1,2 +1,33 @@
-<h1>Restaurants#new</h1>
-<p>Find me in app/views/restaurants/new.html.erb</p>
+<% provide(:title, 'Register A Restaurant') %>
+
+<h2>Register a Restaurant</h2>
+
+<div class="content-wrapper">
+  <%= form_for @restaurant do |f| %>
+    <% if @restaurant.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-error">
+          The form contains <%= pluralize(@restaurant.errors.count, "error") %>.
+        </div>
+        <ul>
+          <% @restaurant.errors.full_messages.each do |msg| %>
+            <li>* <%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :slug %>
+      <%= f.text_field :slug, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit value="Register Restaurant", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

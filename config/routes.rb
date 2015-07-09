@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   match '/', to: "restaurants#index", via: 'get', as: :root #consolidate with About controller
 
-  resources :restaurants, only: [:new, :create]
+  resources :restaurants, only: [:new, :create, :show] do
+    # namespace :a do
+  end
+
 
   resources :items, only: [:show, :index]
   resources :categories #only necessary methods
