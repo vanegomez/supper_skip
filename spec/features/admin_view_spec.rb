@@ -14,21 +14,26 @@ describe 'a admin viewing the items page', type: :feature do
   context "admin user functionality" do
     it 'can login with the correct information' do
       page.visit signin_path
+      
       page.fill_in('session[email]',    with: user.email)
       page.fill_in('session[password]', with: 'password')
       page.click_button('Sign in')
       expect(page.current_url).to eq(admin_dashboard_url)
     end
 
-    it 'can destroy and item' do
+    it 'can destroy an item' do
       item = Item.create!(title: "Cami's", inventory: 12, price_pie: 30.99,
                           description: "yummy")
 
       page.visit signin_path
-      page.fill_in('session[email]',    with: user.email)
-      page.fill_in('session[password]', with: 'password')
+      page.fill_in('Email',    with: user.email)
+      page.fill_in('Password', with: 'password')
       page.click_button('Sign in')
       page.click_link('Menu Item Management')
+
+      expect(current_path).to eq(admin_items_path)
+      # save_and_open_page
+      # byebug
       expect(page).to have_content("yummy")
       page.click_link('Destroy')
       expect(page).to_not have_content("yummy")
