@@ -14,6 +14,7 @@ describe 'a admin viewing the items page', type: :feature do
   context "admin user functionality" do
     it 'can login with the correct information' do
       page.visit signin_path
+      save_and_open_page
       page.fill_in('session[email]',    with: user.email)
       page.fill_in('session[password]', with: 'password')
       page.click_button('Sign in')
@@ -25,8 +26,8 @@ describe 'a admin viewing the items page', type: :feature do
                           description: "yummy")
 
       page.visit signin_path
-      page.fill_in('session[email]',    with: user.email)
-      page.fill_in('session[password]', with: 'password')
+      page.fill_in('Email',    with: user.email)
+      page.fill_in('Password', with: 'password')
       page.click_button('Sign in')
       page.click_link('Menu Item Management')
       expect(page).to have_content("yummy")

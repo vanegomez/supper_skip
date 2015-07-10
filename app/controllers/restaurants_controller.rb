@@ -16,13 +16,14 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find_by(slug: params[:slug])
+    @restaurant = Restaurant.find_by(slug: params[:restaurant])
   end
 
   def index
   end
 
   def edit
+    @restaurant = Restaurant.find_by(slug: params[:restaurant])
   end
 
   private
@@ -30,8 +31,4 @@ class RestaurantsController < ApplicationController
     def restaurant_params
       params.require(:restaurant).permit(:name, :slug)
     end
-
-    # def restaurant_slug
-    #   params.require(:restaurant)
-    # end
 end
