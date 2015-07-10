@@ -7,6 +7,7 @@ class Restaurant < ActiveRecord::Base
   has_many :orders
   #has_many :customers, through: :orders
   has_many :user_roles
+  # has_many :users, through: :user_roles #use it if line 11 doesn't work
   has_many :staff, through: :user_roles
 
   def generate_slug
