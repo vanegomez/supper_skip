@@ -15,7 +15,6 @@ describe 'a registered owner', type: :feature do
 
   it "can view registered restaurant" do
     restaurant = Restaurant.create!(name: "Very Sweet", slug: "very-sweet" )
-
     expect(current_path).to eq(restaurant_path(restaurant))
   end
 end
