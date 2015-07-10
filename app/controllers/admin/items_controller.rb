@@ -11,12 +11,10 @@ class Admin::ItemsController < ApplicationController
 		@items = Item.all
 	end
 
- def update
+  def update
  	# duplicate
 		@item = Item.find(params[:id])
- end
-
-
+  end
 
 	def create
 		@item = Item.new(item_params)

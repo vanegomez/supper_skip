@@ -2,14 +2,14 @@ Rails.application.routes.draw do
 
   root "restaurants#index"
 
-  namespace :restaurants, as: :restaurant, path: '/:restaurant' do
+  namespace :restaurants, as: :restaurant, path: '/:slug.html' do
     resources :users
     resources :orders
     resources :items
   end
 
   resources :restaurants, only: [:new, :create, :edit]
-  get '/:restaurant' => 'restaurants#show', as: :restaurant
+  get '/:slug.html' => 'restaurants#show', as: :restaurant
 
 
   resources :items, only: [:show, :index]
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get     '/about_us'          => 'about_us#index'
 
   namespace :admin do
-    resources :admin
+    # resources :admin
     resources :items
     resources :categories
     resources :orders do
