@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
 
-    if user && user.authenticate(params[:session][:password]) && user.role == 'admin'
+    if user && user.authenticate(params[:session][:password]) && user.roles.find_by(name: 'admin').name == 'admin'
       sign_in user
       redirect_to admin_dashboard_path
     elsif user && user.authenticate(params[:session][:password])

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :user_roles
   has_many :restaurants, through: :user_roles
+  has_many :roles, through: :user_roles
 
 
   before_save   { self.email = email.downcase }
@@ -12,8 +13,8 @@ class User < ActiveRecord::Base
             presence: true,
             length:   { maximum: 50 }
 
-  validates :role,
-            presence: true
+  # validates :role,
+  #           presence: true
 
   validates :email,
             presence:   true,

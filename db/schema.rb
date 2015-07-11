@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710204502) do
+ActiveRecord::Schema.define(version: 20150710210635) do
 
   create_table "cart_items", force: true do |t|
     t.integer  "cart_id"
@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 20150710204502) do
     t.string   "full_name"
     t.string   "email"
     t.string   "display_name"
-    t.string   "role",               default: "customer"
     t.string   "encrypted_password"
     t.string   "password_digest"
     t.string   "salt"
