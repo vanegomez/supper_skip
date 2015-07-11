@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
 
   resources :items, only: [:show, :index]
-  resources :categories #only necessary methods
+  resources :categories, only: [:show, :index] #only necessary methods
   resources :orders do #consider rerouting?
     resources :order_items do #where are these methods getting called? consider removing
       get :increment, on: :member
