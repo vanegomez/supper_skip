@@ -30,10 +30,6 @@ describe 'a admin viewing the items page', type: :feature do
       page.fill_in('Password', with: 'password')
       page.click_button('Sign in')
       page.click_link('Menu Item Management')
-
-      expect(current_path).to eq(admin_items_path)
-      # save_and_open_page
-      # byebug
       expect(page).to have_content("yummy")
       page.click_link('Destroy')
       expect(page).to_not have_content("yummy")
