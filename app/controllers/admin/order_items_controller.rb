@@ -8,7 +8,7 @@ class Admin::OrderItemsController < ApplicationController
     item   = Item.find(params[:item_id])
     @order = Order.find(params[:order_id])
     @order.order_items.create(item)
-    redirect_to items_path
+    redirect_to admin_items_path
   end
 
   def increment

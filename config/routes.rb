@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :orders do
-      resources :order_items do # maybe remove, where is this getting called? controller hasn't been created for admin
+      resources :order_items do
         get :increment, on: :member
         get :decrement, on: :member
       end
