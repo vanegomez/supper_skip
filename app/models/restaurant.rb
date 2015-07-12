@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :slug, uniqueness: true
 
-  has_many :items
+  has_many :categories
   has_many :orders
   #has_many :customers, through: :orders
   has_many :user_roles

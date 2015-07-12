@@ -1,5 +1,5 @@
 class RemoveRestaurantIdFromItems < ActiveRecord::Migration
   def change
-    remove_column :items, :restaurant_id, :integer
+    remove_reference :items, :restaurants
   end
 end

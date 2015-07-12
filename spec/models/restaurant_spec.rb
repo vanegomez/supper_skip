@@ -44,13 +44,20 @@ RSpec.describe Restaurant, :type => :model do
   end
 
   context 'relationships' do
+    it 'has many categories' do
+      restaurant = Restaurant.create(valid_attributes)
+      category = Category.create(name: "You Put That In A Pie?", restaurant_id: restaurant.id)
+
+      expect(restaurant.categories).to eq([category])
+    end
+
     it 'has many items' do
       restaurant = Restaurant.create(valid_attributes)
-      category = Category.create(name: "You Put That In A Pie?")
+      category = Category.create(name: "You Put That In A Pie?", restaurant: restaurant)
       item1 = Item.create(title: "Awesome Apple", description: "Local, organically grown apples, gluten-free",
-                          inventory: 10, price_pie: 12.99, category_ids: [category.id], restaurant: restaurant)
+                          inventory: 10, price_pie: 12.99, category_ids: [category.id])
       item2 = Item.create(title: "Delicious Apple", description: "Local, organically grown apples, gluten-free",
-                          inventory: 10, price_pie: 12.99, category_ids: [category.id], restaurant: restaurant)
+                          inventory: 10, price_pie: 12.99, category_ids: [category.id])
 
       expect(restaurant.items).to eq([item1, item2])
     end
