@@ -3,12 +3,14 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 describe 'a restaurant admin viewing the items page', type: :feature do
+  let(:role) { Role.create(name: 'admin') }
+
   let(:user) do
-    User.create!(:full_name   => "john doe",
-                :email        => "john_doe@example.com",
-                :display_name => "john_doe_123",
-                :role         => "admin",
-                :password     => 'password')
+    User.create!(:full_name    => "john doe",
+                 :email        => "john_doe@example.com",
+                 :display_name => "john_doe_123",
+                 :password     => 'password',
+                 :role_id      => [role.id])
   end
 
   let(:restaurant) {
