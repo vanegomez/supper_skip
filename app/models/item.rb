@@ -6,6 +6,7 @@ class Item < ActiveRecord::Base
 
   has_many  :categorizations
   has_many  :categories, through: :categorizations
+  has_one :restaurant, through: :categories
 
   has_many  :order_items
   has_many  :orders, through: :order_items
