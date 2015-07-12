@@ -56,7 +56,7 @@ class Admin::CategoriesController < ApplicationController
 		end
 
 		def authorize?
-			unless signed_in? && current_user.role == "admin"
+			unless signed_in? && current_user.roles.find_by(name: 'admin')
 				redirect_to "https://www.youtube.com/watch?v=Jvk7faxsxkQ"
 			end
 		end

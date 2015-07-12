@@ -5,11 +5,11 @@ require 'capybara/rspec'
 describe 'a user can register a restaurant', type: :feature do
   let(:user) do
     User.create!(:full_name   => "john doe",
-                :email        => "john_doe@example.com",
-                :display_name => "john_doe_123",
-                :role         => "user",
-                :password     => 'password',
-                :password_confirmation => 'password')
+      :email        => "john_doe@example.com",
+      :display_name => "john_doe_123",
+      :role         => "user",
+      :password     => 'password',
+      :password_confirmation => 'password')
   end
 
   context "user is logged in" do
@@ -71,4 +71,3 @@ describe 'a user can register a restaurant', type: :feature do
 
   end
 end
-
