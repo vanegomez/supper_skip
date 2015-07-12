@@ -4,6 +4,7 @@ class Restaurant < ActiveRecord::Base
   validates :slug, uniqueness: true
 
   has_many :categories
+  has_many :items, through: :categories
   has_many :orders
   #has_many :customers, through: :orders
   has_many :user_roles
