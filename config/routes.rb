@@ -11,15 +11,9 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:new, :create, :edit]
   get '/:slug.html' => 'restaurants#show', as: :restaurant
 
-
   resources :items, only: [:show, :index]
-  resources :categories #only necessary methods
-  resources :orders do #consider rerouting?
-    resources :order_items do #where are these methods getting called? consider removing
-      get :increment, on: :member
-      get :decrement, on: :member
-    end
-  end
+  resources :categories, only: [:show, :index]
+  resources :orders, only: [:new, :create, :show]
 
   patch 'admin/order/:id/cancel' => 'admin/orders#cancel',   as: :cancel_order
   patch 'admin/pay/:id/pay'      => 'admin/orders#pay',      as: :pay_order
@@ -54,7 +48,7 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :orders do
-      resources :order_items do # maybe remove, where is this getting called? controller hasn't been created for admin
+      resources :order_items do
         get :increment, on: :member
         get :decrement, on: :member
       end

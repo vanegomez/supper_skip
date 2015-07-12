@@ -45,7 +45,7 @@
         <td><%= order.delivery_address %></td>
         <td><%= order.order_status.upcase %></td>
         <td>
-          <%= link_to "Delete", order, method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%= link_to "Delete", admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?'} %>
         </td>
       </tr>
       <% end %>

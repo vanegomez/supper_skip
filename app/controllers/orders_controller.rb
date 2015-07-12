@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_customer
 
   def new
     @order = Order.new
   end
 
   def show
-    @order
+    set_order
   end
 
   def create
@@ -24,24 +24,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
-  def destroy
-    @order.destroy
-
-    flash.notice= 'Order was successfully destroyed.'
-
-    redirect_to admin_orders_url
-  end
-
   private
 
     def set_order
@@ -55,5 +37,11 @@ class OrdersController < ApplicationController
                                     :delivery_address,
                                     :order_status
                                     )
+    end
+
+    def authorize_customer
+      unless signed_in?
+        redirect_to "https://www.youtube.com/watch?v=Jvk7faxsxkQ"
+      end
     end
 end
