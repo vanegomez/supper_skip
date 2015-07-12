@@ -8,8 +8,8 @@ class Restaurant < ActiveRecord::Base
   #has_many :customers, through: :orders
   has_many :user_roles
   # has_many :users, through: :user_roles #use it if line 11 doesn't work
-  has_many :staff, through: :user_roles
   has_many :roles, through: :user_roles
+  has_many :users
 
   def generate_slug
     if self.slug.empty?
