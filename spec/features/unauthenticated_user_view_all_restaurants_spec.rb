@@ -10,8 +10,13 @@ describe 'unauthenticated user', type: :feature do
   end
 
   it "can view all restaurants" do
+    expect(Restaurant.count).to eq(3)
+
     visit root_path
 
-    expect(Restaurant.count).to eq(3)
+    expect(page.current_path).to eq(root_path)
+    expect(page).to have_link("Very Sweet")
+    expect(page).to have_link("Very Cool")
+    expect(page).to have_link("Very Interesting")
   end
 end

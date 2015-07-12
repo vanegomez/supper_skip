@@ -7,7 +7,9 @@
       <div class="cover-container">
 
         <div class="inner cover">
-          
+          <% @restaurants.each do |restaurant| %>
+            <%= link_to restaurant.name, restaurant_items_path(restaurant) %>
+          <% end  %>
         </div>
 
       </div>
