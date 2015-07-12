@@ -17,6 +17,13 @@ class Admin::OrdersController < ApplicationController
   def show
   end
 
+  def destroy
+    @order.destroy
+    flash.notice = 'Order was successfully destroyed.'
+
+    redirect_to admin_orders_url
+  end
+
 # consider grouping status update methods and moving
   def cancel
     @order.order_status = "cancelled"
