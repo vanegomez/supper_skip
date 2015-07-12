@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:new, :create, :edit]
   get '/:slug.html' => 'restaurants#show', as: :restaurant
 
-
   resources :items, only: [:show, :index]
   resources :categories, only: [:show, :index]
   resources :orders, only: [:new, :create, :show]
