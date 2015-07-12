@@ -4,8 +4,6 @@ class Item < ActiveRecord::Base
   validates :title,       presence: true, uniqueness: true
   validates :description, presence: true
 
-  belongs_to :restaurant
-
   has_many  :categorizations
   has_many  :categories, through: :categorizations
 
