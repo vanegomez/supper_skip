@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:new, :create, :edit]
   get '/:slug.html' => 'restaurants#show', as: :restaurant
 
-  namespace :restaurants, as: :restaurant, path: '/:slug.html' do
+  namespace :slug, as: :restaurant, path: '/:slug.html' do
     resources :categories, only: [:show, :index]
     resources :items, only: [:show, :index]
   end
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 # restaurant admin
   put     '/admin/retire/item'      => 'admin/retire_item#update'
 
-
+# nest under super admin
   get     '/order_items/new'  => 'order_items#new',         as: :new_order_item
   post    '/order_items'      => 'order_items#create',      as: :order_items
 

@@ -1,3 +1,5 @@
+# nest under super admin
+
 class Admin::OrderItemsController < ApplicationController
   def new
     @order      = Order.find(params[:order_id])

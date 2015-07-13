@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Restaurant::ItemsController < ApplicationController
 
   def index
     @categories = Category.all
