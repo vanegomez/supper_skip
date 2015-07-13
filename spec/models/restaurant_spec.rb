@@ -57,7 +57,7 @@ RSpec.describe Restaurant, :type => :model do
 
     it 'has many orders' do
       restaurant = Restaurant.create(valid_attributes)
-      user = User.create(full_name: "Jeff", email: "demo+jeff@jumpstartlab.com", password: "password", role: :user, display_name: "j3")
+      user = User.create(full_name: "Jeff", email: "demo+jeff@jumpstartlab.com", password: "password", display_name: "j3")
       order1 = Order.create(user: user, order_total: 15, order_type: "pick-up", delivery_address: nil, order_status: "completed", restaurant: restaurant)
       order2 = Order.create(user: user, order_total: 15, order_type: "pick-up", delivery_address: nil, order_status: "completed", restaurant: restaurant)
 
@@ -65,11 +65,22 @@ RSpec.describe Restaurant, :type => :model do
     end
 
     xit 'has many staff through user roles' do # user roles and roles table need to be created
-      restaurant = Restaurant.create(valid_attributes)
-      staff1 = User.create(full_name: "Jeff", email: "demo+jeff@jumpstartlab.com", password: "password", role: "staff", display_name: "j3")
-      staff2 = User.create(full_name: "Jack", email: "demo+jack@jumpstartlab.com", password: "password", role: "staff", display_name: "jack")
+      role = Role.create(name: "staff")
 
+      restaurant = Restaurant.create(valid_attributes)
+
+      staff1 = role.users.create(full_name: "Jeff", email: "demo+jeff@jumpstartlab.com", password: "password", display_name: "j3")
+      staff2 = role.users.create(full_name: "Jack", email: "demo+jack@jumpstartlab.com", password: "password", display_name: "jack")
+
+      s1 = staff1.user_roles.where('role_id = ?', role.id)
+      s1.update_attributes
+      # user_role = UserRole.find_by(user_id: staff1.id)
+      # user_role.restaurant_id =
+      # user_role.save
       expect(restaurant.staff).to eq([staff1, staff2])
     end
   end
 end
+
+# gu = g.groups_users.where('user_id = ?',u.id)
+# gu.update_attributes (:status => 'inactive')

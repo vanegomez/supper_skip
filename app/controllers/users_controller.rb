@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 
   def authorize?
     redirect_to "https://www.youtube.com/watch?v=Jvk7faxsxkQ" unless current_user.id == @user.id
-    # where is current_user defined?
   end
 
   def set_user
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:full_name,
                                  :email,
                                  :display_name,
-                                 :role,
                                  :password,
                                  :password_confirmation
                                  )
