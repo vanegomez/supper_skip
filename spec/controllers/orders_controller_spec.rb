@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, :type => :controller do
+  let(:user) do
+    User.create!( :full_name    => "mary ann",
+                  :email        => "mary_ann@example.com",
+                  :display_name => "mary_ann_123",
+                  :password     => 'password')
+  end
 
   let(:valid_attributes) do
     {
@@ -14,6 +20,10 @@ RSpec.describe OrdersController, :type => :controller do
 
   let(:valid_session) { {} }
 
+  before(:each) do
+    allow_any_instance_of(OrdersController).to receive(:current_user).and_return(user)
+  end
+
   describe "GET show" do
     it "assigns the requested order as @order" do
       order = Order.create! valid_attributes
@@ -26,14 +36,6 @@ RSpec.describe OrdersController, :type => :controller do
     it "assigns a new order as @order" do
       get :new, {}, valid_session
       expect(assigns(:order)).to be_a_new(Order)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested order as @order" do
-      order = Order.create! valid_attributes
-      get :edit, {:id => order.to_param}, valid_session
-      expect(assigns(:order)).to eq(order)
     end
   end
 
@@ -55,43 +57,6 @@ RSpec.describe OrdersController, :type => :controller do
         post :create, {:order => valid_attributes}, valid_session
         expect(response).to redirect_to(Order.last)
       end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        { order: "Bacon Pie", user_id: 2, order_total: 12.21,
-          order_type: "pick-up", delivery_address: "yo step-momma",
-          order_status: "paid"}
-      }
-
-      it "updates the requested order" do
-        order = Order.create! valid_attributes
-        put :update, {:id => order.to_param, :order => new_attributes}, valid_session
-        order.reload
-      end
-
-      it "assigns the requested order as @order" do
-        order = Order.create! valid_attributes
-        put :update, {:id => order.to_param, :order => valid_attributes}, valid_session
-        expect(assigns(:order)).to eq(order)
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested order" do
-      order = Order.create! valid_attributes
-      expect {
-        delete :destroy, {:id => order.to_param}, valid_session
-      }.to change(Order, :count).by(-1)
-    end
-
-    it "redirects to the orders list" do
-      order = Order.create! valid_attributes
-      delete :destroy, {:id => order.to_param}, valid_session
-      expect(response).to redirect_to(admin_orders_url)
     end
   end
 end

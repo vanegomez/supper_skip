@@ -1,7 +1,7 @@
 #inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::CategoriesController < ApplicationController
 	before_action	:set_category, 	only: [:show, :edit, :update, :destroy]
-	before_action :authorize?, 		only: [:show, :create, :edit, :update, :destroy]
+	before_action :authorize?
 
 	def new
 		@category = Category.new
@@ -22,7 +22,7 @@ class Admin::CategoriesController < ApplicationController
 
 		respond_to do |format|
 			if @category.save
-				format.html { redirect_to admin_category_path(category), notice: 'Category was succesfully created.'}
+				format.html { redirect_to admin_category_path(@category), notice: 'Category was succesfully created.'}
 			else
 				format.html { render :new }
 			end

@@ -1,8 +1,8 @@
 #inheret from Admin::AdminController and remove 'authorize?' method
 
 class Admin::OrdersController < ApplicationController
-  before_action	:set_order,  only: [:show, :edit, :update, :destroy, :cancel, :pay, :complete]
-  before_action :authorize?,  only: [:index, :edit, :update, :destroy, :cancel, :pay, :complete]
+  before_action	:set_order, except: [:index]
+  before_action :authorize?
 
   def index
     @status_counts = Order.status_counts
@@ -15,6 +15,13 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @order.destroy
+    flash.notice = 'Order was successfully destroyed.'
+
+    redirect_to admin_orders_url
   end
 
 # consider grouping status update methods and moving
