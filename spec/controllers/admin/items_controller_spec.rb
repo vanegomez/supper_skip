@@ -12,12 +12,13 @@ RSpec.describe Admin::ItemsController, :type => :controller do
   end
 
   let(:user) do
-    User.create!(
+    role = Role.create(name: "admin")
+    role.users.create!(
       :full_name   => "john doe",
       :email        => "john_doe@example.com",
       :display_name => "john_doe_123",
-      :password     => 'password',
-      :role         => "admin")
+      :password     => "password"
+     )
   end
 
   before(:each) do

@@ -1,11 +1,10 @@
-require 'rails_helper'
+require 'rails_helper' # need to add some kind of validation for role presence on user
 
 RSpec.describe User, :type => :model do
   let(:user) do
     User.create(:full_name => "George Brett",
                 :email => "brett@example.com",
                 :display_name => "Baseball Badass Brett",
-                :role => "Customer",
                 :password => 'password'
                 )
   end
@@ -34,7 +33,6 @@ RSpec.describe User, :type => :model do
       User.create(:full_name => "Babe Ruth",
                   :email => "bambino@example.com",
                   :display_name => "The Great Bambino",
-                  :role => "Customer",
                   :password => 'password'
                   )
     end
@@ -43,3 +41,4 @@ RSpec.describe User, :type => :model do
   end
 
 end
+
