@@ -2,18 +2,19 @@ Rails.application.routes.draw do
 
   root "restaurants#index"
 
-  namespace :restaurants, as: :restaurant, path: '/:slug.html' do
-    resources :users
-    resources :orders
-    resources :items
-  end
-
   resources :restaurants, only: [:new, :create, :edit]
   get '/:slug.html' => 'restaurants#show', as: :restaurant
 
-  resources :items, only: [:show, :index]
-  resources :categories, only: [:show, :index]
-  resources :orders, only: [:new, :create, :show]
+  namespace :restaurants, as: :restaurant, path: '/:slug.html' do
+    resources :users
+    resources :orders#, [:new, :create, :show]
+    resources :categories#, only: [:show, :index]
+    resources :items#, only: [:show, :index]
+  end
+
+  # resources :items, only: [:show, :index]
+  # resources :categories, only: [:show, :index]
+  # resources :orders, only: [:new, :create, :show]
 
   patch 'admin/order/:id/cancel' => 'admin/orders#cancel',   as: :cancel_order
   patch 'admin/pay/:id/pay'      => 'admin/orders#pay',      as: :pay_order

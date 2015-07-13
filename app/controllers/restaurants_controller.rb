@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(slug: params[:slug])
-    redirect_to items_path
+    redirect_to restaurant_items_path
   end
 
   def index
