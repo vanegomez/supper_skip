@@ -23,7 +23,7 @@ describe 'a restaurant admin viewing the items page', type: :feature do
 		allow_any_instance_of(Admin::ItemsController).to receive(:current_user).and_return(user)
 	end
 
-	it "" do
+	xit "" do
 		visit admin_items_path
 	end
 end
