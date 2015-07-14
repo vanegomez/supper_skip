@@ -10,10 +10,7 @@ Rails.application.routes.draw do
     resources :items, only: [:show, :index]
   end
 
-  # resources :items, only: [:show, :index]
-  # resources :categories, only: [:show, :index]
   resources :orders, only: [:new, :create, :show]
-
   resources :users
 
 # 3 admin routes below belong to super admin
