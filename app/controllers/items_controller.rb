@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
+    @restaurant = Restaurant.find_by(slug: params[:restaurant_id])
     @categories = Category.all
-    @items = (Item.not_retired_too + Item.not_retired)
+    @items = @restaurant.items
   end
 
   def show

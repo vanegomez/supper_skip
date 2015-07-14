@@ -2,14 +2,16 @@ Rails.application.routes.draw do
 
   root "restaurants#index"
 
-  namespace :restaurants, as: :restaurant, path: '/:slug.html' do
-    resources :users
+  resources :users
+
+  resources :restaurants, only: [:new, :create, :edit] do
+    # route is nested (will get a restaurant_id in the params)
+    # but the controller is not nested (will just use ItemsController or OrdersController)
     resources :orders
     resources :items
   end
 
-  resources :restaurants, only: [:new, :create, :edit]
-  get '/:slug.html' => 'restaurants#show', as: :restaurant
+  get '/:slug' => 'restaurants#show', as: :restaurant
 
   resources :items, only: [:show, :index]
   resources :categories, only: [:show, :index]
@@ -45,6 +47,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # resources :admin
+    # namespace refers to a module (in this case Admin)
+    # namespace-nested controllers will be within that ruby module
+    # i.e. Admin::ItemsController
     resources :items
     resources :categories
     resources :orders do

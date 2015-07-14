@@ -15,8 +15,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  # /restaurants/pizza/items
+  # /restaurants/1/items
   def show
-    @restaurant = Restaurant.find_by(slug: params[:slug])
+    @restaurant = Restaurant.find_by(slug: params[:id])
   end
 
   def index
@@ -24,7 +26,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find_by(slug: params[:slug])
+    @restaurant = Restaurant.find_by(slug: params[:id])
   end
 
   private
