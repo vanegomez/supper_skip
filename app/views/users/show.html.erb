@@ -15,15 +15,41 @@
       <td><%= @user.email %></td>
       <td><%= @user.display_name %></td>
       <td>
-        <ul>
-          <% @user.orders.each do |order| %>
+
+          <% grouped_orders = @user.orders.group_by { |order| order.restaurant } %>
+          <!--[order - rest1, order - rest1, order-rest2]-->
+
+
+          <% grouped_orders.keys.each do |restaurant| %>
+            <div class="restaurant_name"><%= restaurant.name %></div>
+
+          <% end %>
+
+            <!--group orders by restaurant-->
+            <% order.restaurant %>
+            <!--create sections for each restaurant-->
+
+
+            <!--some kind of iteration-->
+              <!--1 restaurant 1-->
+                <!--[order - rest1]-->
+                <!--[order - rest1]-->
+
+              <!--2 restaurant 2-->
+                <!--[order - rest2]-->
+
+
+
+
+
+
             <li><%= link_to order.created_at.to_formatted_s(:long), order_path(order) %></li>
           <% end %>
-        </ul>
+
       </td>
     </tbody>
   </table>
 
   <%= link_to 'Back to Cart', cart_path %> |
-  <%= link_to 'Back to Menu', items_path %>
+  <%= link_to 'Back to Restaurants', root_path %>
 </div>
