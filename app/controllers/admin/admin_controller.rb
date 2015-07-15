@@ -4,6 +4,7 @@ class Admin::AdminController < ApplicationController
   before_action :authorize?
 
   def show
+    @restaurants = current_user.restaurants
   end
 
   private

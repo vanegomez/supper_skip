@@ -1,24 +1,30 @@
-<%= render :partial => "shared/individual_header" %>
+<%= render :partial => "shared/header" %>
 <h1>Welcome to the Adminstrative Dashboard</h1>
 
 <div class="content-wrapper formStyle">
   <table class="table">
     <thead>
-      <tr>
-        <th><h3><center>Menu Management</center></h3></th>
-        <th><h3><center>Order/Customer Management</center></h3></th>
-      </tr>
+      <tr><th>Manage Restaurants</th></tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>
-          <h4><center><%= link_to 'Menu Item Management', admin_items_path %></center></h4><br/>
-          <h4><center><%= link_to 'Menu Category Managment', admin_categories_path %></center></h4>
-        </td>
-        <td>
-          <h4><center><%= link_to 'Order Management', admin_orders_path %></center></h4><br/>
-        </td>
-      </tr>
-    </tbody>
+
+    <% current_user.restaurants.each do |restaurant| %>
+      <tbody>
+        <tr>
+          <td><%= restaurant.name %></td>
+          <td><%= link_to "Manage Categories", admin_restaurant_categories_path(restaurant_slug: restaurant.slug)  %></td>
+          <td><%= link_to "Manage Items", admin_restaurant_items_path(restaurant_slug: restaurant.slug)  %></td>
+          <td><%= link_to "Manage Orders", admin_restaurant_orders_path(restaurant_slug: restaurant.slug)  %></td>
+        </tr>
+      </tbody>
+    <% end %>
   </table>
 </div>
+
+
+
+
+
+
+
+
+

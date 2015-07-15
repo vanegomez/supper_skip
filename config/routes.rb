@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get     '/about_us'          => 'about_us#index'
 
   namespace :admin do
-    resources :restaurants, only: [:show, :edit, :update] do
+    resources :restaurants, only: [:show, :edit, :update], param: :slug do
       resources :items
       resources :categories
       resources :orders do
