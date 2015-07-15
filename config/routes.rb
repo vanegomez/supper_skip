@@ -2,23 +2,13 @@ Rails.application.routes.draw do
 
   root "restaurants#index"
 
-  resources :restaurants, only: [:new, :create, :edit]
-  get '/:slug.html' => 'restaurants#show', as: :restaurant
-
-  namespace :slug, as: :restaurant, path: '/:slug.html' do
-    resources :categories, only: [:show, :index]
-    resources :items, only: [:show, :index]
-  end
-
-  resources :orders, only: [:new, :create, :show]
   resources :users
 
-# 3 admin routes below belong to super admin
-  patch 'admin/order/:id/cancel' => 'admin/orders#cancel',   as: :cancel_order
-  patch 'admin/pay/:id/pay'      => 'admin/orders#pay',      as: :pay_order
-  patch 'admin/pay/:id/complete' => 'admin/orders#complete', as: :complete_order
-
-  # need super admin controller and restaurant admin controller for different dashboards
+  resources :restaurants, only: [:new, :show, :create, :edit], param: :slug do
+    resources :categories, only: [:show, :index]
+    resources :orders, only: [:new, :create, :show]
+    resources :items, only: [:show, :index]
+  end
 
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -39,9 +29,10 @@ Rails.application.routes.draw do
 # restaurant admin
   put     '/admin/retire/item'      => 'admin/retire_item#update'
 
-# nest under super admin
-  get     '/order_items/new'  => 'order_items#new',         as: :new_order_item
-  post    '/order_items'      => 'order_items#create',      as: :order_items
+  resources :order_items, only: [:new, :create]
+# # nest under super admin
+#   get     '/order_items/new'  => 'order_items#new',         as: :new_order_item
+#   post    '/order_items'      => 'order_items#create',      as: :order_items
 
 # consolidate with welcome controller/move to application controller?
   get     '/about_us'          => 'about_us#index'
@@ -57,6 +48,14 @@ Rails.application.routes.draw do
       end
     end
   end
+
+
+# 3 admin routes below belong to super admin
+  patch 'admin/order/:id/cancel' => 'admin/orders#cancel',   as: :cancel_order
+  patch 'admin/pay/:id/pay'      => 'admin/orders#pay',      as: :pay_order
+  patch 'admin/pay/:id/complete' => 'admin/orders#complete', as: :complete_order
+
+# need super admin controller and restaurant admin controller for different dashboards
 
   match '/admin_dashboard',  to: 'admin/admin#show',  via: 'get'
 end

@@ -46,7 +46,7 @@ RSpec.describe Restaurant, :type => :model do
   context 'relationships' do
     it 'has many categories' do
       restaurant = Restaurant.create(valid_attributes)
-      category = Category.create(name: "You Put That In A Pie?", restaurant: restaurant)
+      category = restaurant.categories.create(name: "You Put That In A Pie?", restaurant_id: restaurant.id)
 
       expect(restaurant.categories).to eq([category])
     end

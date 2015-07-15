@@ -34,10 +34,13 @@ describe 'a restaurant admin viewing the items page', type: :feature do
 
 	it "shows all items associated with my restaurant" do
 		visit restaurant_path('pies')
-# save_and_open_page
     within('.container-fluid') do
       expect(page).to have_content('Awesome Apple')
       expect(page).to have_content('Key-Lime')
     end
+  end
+
+	xit "" do
+		visit admin_items_path
 	end
 end
