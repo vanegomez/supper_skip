@@ -1,3 +1,23 @@
+
+food_themes = ["Potato Skins", "tacos", "Twix", "Jalapeno Poppers", "Donuts", "Twinkies",
+ "Pie", "Ice Cream", "Cake", "Fried Chicken", "Chips", "Nerds",
+ "AirHeads", "Cheetos", "Nachos", "Fried cheese", "Pizza", "Milkshakes",
+ "Ranch dressing", "Whipped cream", "Cookie dough", "Red Vines", "Snickers",
+ "Popsicles", "Gummy Worms", "Hot Tamales", "Sour Patch", "Kids", "Big Chew",
+ "Oreos"]
+
+names = ["Sally's", "Steve's", "Tan's", "Tom's", "Vanessa's", "Will's", "Andrew's", "Justin's",
+ "Morgan's", "Chelsea's", "DJ's", "Rachel's", "Rebekah's", "Brett's", "Tracy's", "Mihir's",
+ "Michelle's", "Drew's", "Jorge's", "Lev's", "Lovisa's", "Margarett's", "Michael's", "Robert's",
+ "Tino's", "Drew's", "Trey's", "Tyler's", "David's", "Whitney's"]
+
+restaurant_names = names.zip(food_themes).map { |name| name.join(" ")}
+
+restaurant_names.each do |theme|
+  Restaurant.create(name: "#{theme}", slug: "#{theme.parameterize}")
+end
+
+
 Category.create(name: "Classics")
 Category.create(name: "Savory")
 Category.create(name: "So Good and So Unhealthy")
