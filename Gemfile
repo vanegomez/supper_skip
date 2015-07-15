@@ -14,7 +14,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
-
+gem 'rails_12factor', group: :production
 gem "paperclip", "~> 4.1"
 gem "aws-sdk"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,3 +52,5 @@ gem 'pg'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby "2.2.0"
