@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :orders, only: [:new, :create, :show]
 
-  resources :restaurants, only: [:new, :show, :create, :edit], param: :slug do
+  resources :restaurants, only: [:new, :create, :show], param: :slug do
     resources :categories, only: [:show, :index]
     resources :items, only: [:show, :index]
   end
@@ -38,17 +38,17 @@ Rails.application.routes.draw do
   get     '/about_us'          => 'about_us#index'
 
   namespace :admin do
-    # resources :admin
-    resources :items
-    resources :categories
-    resources :orders do
-      resources :order_items do
-        get :increment, on: :member
-        get :decrement, on: :member
+    resources :restaurants, only: [:show, :edit, :update] do
+      resources :items
+      resources :categories
+      resources :orders do
+        resources :order_items do
+          get :increment, on: :member
+          get :decrement, on: :member
+        end
       end
     end
   end
-
 
 # 3 admin routes below belong to super admin
   patch 'admin/order/:id/cancel' => 'admin/orders#cancel',   as: :cancel_order

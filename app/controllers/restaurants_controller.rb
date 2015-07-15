@@ -8,8 +8,10 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     if @restaurant.save
+      current_user.roles << Role.find_by(name: 'admin')
+
       flash[:notice] = "Thank you for registering!"
-      redirect_to restaurant_path(slug: params[:restaurant][:slug])
+      redirect_to admin_restaurant_path(slug: @restaurant.slug)
     else
       flash[:notice] = "Please try again!"
       render :new
@@ -25,9 +27,6 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  def edit
-    @restaurant = Restaurant.find_by(slug: params[:slug])
-  end
 
   private
 

@@ -8,7 +8,7 @@
 
         <div class="inner cover">
           <% @restaurants.each do |restaurant| %>
-            <div><%= link_to restaurant.name, restaurant_items_path(restaurant) %></div>
+            <div><%= link_to restaurant.name, restaurant_items_path(restaurant_slug: restaurant.slug) %></div>
           <% end  %>
         </div>
 
