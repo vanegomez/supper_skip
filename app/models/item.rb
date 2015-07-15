@@ -13,9 +13,9 @@ class Item < ActiveRecord::Base
   has_many  :cart_items
   has_many  :carts, through: :cart_items
 
-  scope :not_retired, -> { where(retire: 'false') }
-  scope :not_retired_too, -> { where(retire: 'f') }
-  scope :retired, -> { where(retire: 't') }
+  scope :not_retired, -> { where(retire: false) }
+  # scope :not_retired_too, -> { where(retire: 'f') }
+  scope :retired, -> { where(retire: true) }
 
   # def category_names
   #   categories.join(", ")

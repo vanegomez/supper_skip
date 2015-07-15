@@ -11,13 +11,13 @@ class RestaurantsController < ApplicationController
       flash[:notice] = "Thank you for registering!"
       redirect_to restaurant_path(slug: params[:restaurant][:slug])
     else
+      flash[:notice] = "Please try again!"
       render :new
     end
   end
 
   def show
     @restaurant = Restaurant.find_by(slug: params[:slug])
-    # byebug
     redirect_to restaurant_items_path(restaurant_slug: params[:slug])
   end
 

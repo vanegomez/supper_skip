@@ -13,7 +13,7 @@ class Restaurant < ActiveRecord::Base
   has_many :users
 
   def generate_slug
-    if self.slug.empty?
+    if slug.empty?
       self.slug = name.parameterize
     else
       self.slug = self.slug.parameterize
