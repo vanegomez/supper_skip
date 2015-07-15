@@ -5,6 +5,8 @@
   <p>202.398.7437</p>
   <% if current_user %>
     <p><%= link_to "Register a New Restaurant", new_restaurant_path %></p>
+  <% else  %>
+    <p><%= link_to "To Create a Restaurant please Sign In", signin_path %></p>
   <% end %>
 </footer>
 
