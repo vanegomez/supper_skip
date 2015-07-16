@@ -8,7 +8,8 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def index
-		@category = Category.all
+		@restaurant = Restaurant.find
+		@categories = Category.where()
 	end
 
 	def show

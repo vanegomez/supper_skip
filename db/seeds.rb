@@ -99,7 +99,7 @@ category9.items.create(title: "Baltimore Bomb", description: "Berger Cookies, va
 category10.items.create(title: "Elvis Pie", description: "Peanut butter, bacon, bananas, and chocolate",
                         inventory: 12, price_pie: 30.99, category_ids:[5])
 
-Order.create(user_id: 1, order_total: 15, order_type: "pick-up", delivery_address: nil, order_status: "completed")
+Order.create(user_id: 1, order_total: 15, order_type: "pick-up", delivery_address: nil, order_status: "completed", restaurant_id: 2)
 Order.create(user_id: 1, order_total: 16, order_type: "delivery", delivery_address: "1520 Blake Street, Denver, CO", order_status: "cancelled")
 Order.create(user_id: 2, order_total: 17, order_type: "pick-up", delivery_address: nil, order_status: "ordered")
 Order.create(user_id: 3, order_total: 35, order_type: "pick-up", delivery_address: nil, order_status: "ordered", restaurant_id: 2)

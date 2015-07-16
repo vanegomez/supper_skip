@@ -8,7 +8,8 @@ class Admin::ItemsController < ApplicationController
 	end
 
 	def index
-		@items = Item.all
+		@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		@items = @restaurant.items
 	end
 
   def update
@@ -30,7 +31,6 @@ class Admin::ItemsController < ApplicationController
 
 	def show
 	end
-
 
 	def destroy
 		if @item.destroy

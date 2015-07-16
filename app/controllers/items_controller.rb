@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
 
   def index
-    # byebug
     @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
     # @restaurant = Restaurant.find_by(slug: params[:slug])
     @categories = @restaurant.categories

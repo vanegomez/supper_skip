@@ -19,9 +19,9 @@
 					<td class='pie_description'><%= item.description %></td>
 					<td class='pie_price'><%= item.price_pie %></td>
 					<td>
-						<%= link_to 'Show', admin_item_path(item) %> |
-						<%= link_to 'Edit', edit_admin_item_path(item) %> |
-	      		<%= link_to 'Destroy', admin_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %> |
+						<%= link_to 'Show', admin_restaurant_item_path(id: item.id, restaurant_slug: @restaurant.slug) %> |
+						<%= link_to 'Edit', edit_admin_restaurant_item_path(id: item.id, restaurant_slug: @restaurant.slug) %> |
+	      		<%= link_to 'Destroy', admin_restaurant_item_path(id: item.id, restaurant_slug: @restaurant.slug), method: :delete, data: { confirm: 'Are you sure?' } %> |
 						<%= link_to 'Retire', admin_retire_item_path(item), method: :put, data: { confirm: 'Are you sure?' } %>
 					</td>
 	      </tr>
@@ -29,5 +29,5 @@
 	  </tbody>
 	</table>
 
-	<%= link_to 'Create a New Item', new_admin_item_path %>
+	<%= link_to 'Create a New Item', new_admin_restaurant_item_path(restaurant_slug: @restaurant.slug) %>
 </div>
