@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
 	has_many :items, :through => :categorizations
 	belongs_to :restaurant
 
-	validates :name, presence: true, uniqueness: true
+	validates :name, presence: true, :uniqueness => {:scope => :restaurant_id}
 
 	# def item_titles
  #    items.join(", ")
