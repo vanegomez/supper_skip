@@ -1,5 +1,6 @@
 #inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::ItemsController < ApplicationController
+	before_action :set_restaurant
 	before_action	:set_item, only: [:show, :edit, :update, :destroy, :retire]
 	before_action :authorize?, only: [:show, :create, :edit, :update, :destroy, :retire]
 
@@ -39,6 +40,10 @@ class Admin::ItemsController < ApplicationController
 	end
 
 	private
+
+		def set_restaurant
+			@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		end
 
 		def set_item
 			@item = Item.find(params[:id])

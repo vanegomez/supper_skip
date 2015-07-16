@@ -23,7 +23,7 @@ class Admin::CategoriesController < ApplicationController
 
 		respond_to do |format|
 			if @category.save
-				format.html { redirect_to admin_category_path(@category), notice: 'Category was succesfully created.'}
+				format.html { redirect_to admin_restaurant_category_path(id: @category.id, restaurant_slug: @restaurant.slug), notice: 'Category was succesfully created.'}
 			else
 				format.html { render :new }
 			end
@@ -33,7 +33,7 @@ class Admin::CategoriesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @category.update(category_params)
-				format.html { redirect_to admin_category_path(@category), notice: 'Category was successfully updated.'}
+				format.html { redirect_to admin_restaurant_category_path(id: @category, restaurant_slug: @restaurant.slug), notice: 'Category was successfully updated.'}
 			else
 				format.html { render :edit }
 			end
