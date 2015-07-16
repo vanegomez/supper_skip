@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+    @item = @restaurant.items.find(params[:id])
   end
 end

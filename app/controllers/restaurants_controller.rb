@@ -19,6 +19,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    byebug
     @restaurant = Restaurant.find_by(slug: params[:slug])
     redirect_to restaurant_items_path(restaurant_slug: params[:slug])
   end

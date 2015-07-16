@@ -19,8 +19,8 @@ end
 
 
 Category.create(name: "Classics")
-Category.create(name: "Savory")
-Category.create(name: "So Good and So Unhealthy")
+Category.create(name: "Savory", restaurant_id: 2)
+Category.create(name: "So Good and So Unhealthy", restaurant_id: 2)
 Category.create(name: "I Can't Believe It's Good For Me")
 Category.create(name: "You Put That In A Pie?")
 
@@ -35,7 +35,7 @@ Item.create(title: "Banana", description: "Imported bananas, homemade filling",
 Item.create(title: "Berry", description: "Three berry blend, of in-season, local berries",
  inventory: 4, price_pie: 29.99, category_ids: [1])
 Item.create(title: "Steak Mushroom", description: "Grass-fed cows, tender steak, mushrooms, onions, special sauce",
- inventory: 5, price_pie: 35.99, category_ids:[2, 3])
+ inventory: 5, price_pie: 35.99, category_ids:[2, 3], restaurant_id: 2)
 Item.create(title: "Chicken Pie", description: "Free-range chicken, vegies, and a tangy sauce",
  inventory: 10, price_pie: 33.99, category_ids: [2, 3])
 Item.create(title: "Steak Chilli", description: "Grass-fed cows, tender steak, kidney beans, gluten-free",
@@ -78,13 +78,13 @@ Item.create(title: "Elvis Pie", description: "Peanut butter, bacon, bananas, and
 Order.create(user_id: 1, order_total: 15, order_type: "pick-up", delivery_address: nil, order_status: "completed")
 Order.create(user_id: 1, order_total: 16, order_type: "delivery", delivery_address: "1520 Blake Street, Denver, CO", order_status: "cancelled")
 Order.create(user_id: 2, order_total: 17, order_type: "pick-up", delivery_address: nil, order_status: "ordered")
-Order.create(user_id: 3, order_total: 35, order_type: "pick-up", delivery_address: nil, order_status: "ordered")
+Order.create(user_id: 3, order_total: 35, order_type: "pick-up", delivery_address: nil, order_status: "ordered", restaurant_id: 2)
 Order.create(user_id: 4, order_total: 45, order_type: "pick-up", delivery_address: nil, order_status: "cancelled")
 Order.create(user_id: 4, order_total: 34, order_type: "delivery", delivery_address: "1510 Blake Street, Denver, CO", order_status: "completed")
-Order.create(user_id: 3, order_total: 78, order_type: "pick-up", delivery_address: nil, order_status: "completed")
+Order.create(user_id: 3, order_total: 78, order_type: "pick-up", delivery_address: nil, order_status: "completed", restaurant_id: 5)
 Order.create(user_id: 2, order_total: 88, order_type: "pick-up", delivery_address: nil, order_status: "completed")
 Order.create(user_id: 4, order_total: 34, order_type: "pick-up", delivery_address: nil, order_status: "completed")
-Order.create(user_id: 3, order_total: 12, order_type: "pick-up", delivery_address: nil, order_status: "completed")
+Order.create(user_id: 3, order_total: 12, order_type: "pick-up", delivery_address: nil, order_status: "completed", restaurant_id: 1)
 
 OrderItem.create(order_id: 1, item_id: 2)
 OrderItem.create(order_id: 2, item_id: 4)

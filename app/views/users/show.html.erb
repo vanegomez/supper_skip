@@ -15,7 +15,9 @@
       <td><%= @user.email %></td>
       <td><%= @user.display_name %></td>
       <td>
-          <% grouped_orders = @user.orders.group_by { |order| order.restaurant } %>
+          <% grouped_orders = @user.orders.group_by do |order| %>
+            <% order.restaurant %>
+          <% end %>
           <% grouped_orders.keys.each do |restaurant| %>
             <div class="restaurant_name">
               <%= restaurant.name %>
