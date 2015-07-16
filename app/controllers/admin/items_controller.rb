@@ -45,7 +45,7 @@ class Admin::ItemsController < ApplicationController
 
 	def destroy
 		if @item.destroy
-			redirect_to admin_items_path, notice: 'Item was successfully deleted.'
+			redirect_to admin_restaurant_items_path(restaurant_slug: @restaurant.slug), notice: 'Item was successfully deleted.'
 		end
 	end
 
