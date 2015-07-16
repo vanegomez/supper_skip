@@ -15,6 +15,7 @@ class CartsController < ApplicationController
 	def add_to_cart_view
 		item = Item.find(params[:item_id])
 		cart.items << item
-		redirect_to items_path
+    slug = item.categories.first.restaurant.slug
+		redirect_to restaurant_items_path(restaurant_slug: slug)
 	end
 end

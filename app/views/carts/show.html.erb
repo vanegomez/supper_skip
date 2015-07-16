@@ -15,7 +15,8 @@
       <% unique_cart_items = @cart.cart_items.to_a.uniq { |cart_item| cart_item.item_id } %>
       <% unique_cart_items.each do |cart_item| %>
         <tr>
-          <td><%= link_to cart_item.item.title, item_path(cart_item.item) %></td>
+        <% slug = cart_item.item.categories.first.restaurant.slug %>
+          <td><%= link_to cart_item.item.title, restaurant_item_path(id: cart_item.item.id, restaurant_slug: slug) %></td>
           <td><%= cart_item.item.price_pie %></td>
           <% item_id = cart_item.item_id %>
           <td>
