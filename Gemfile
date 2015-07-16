@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+group :development do
+	gem 'meta_request'
+end
+
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
