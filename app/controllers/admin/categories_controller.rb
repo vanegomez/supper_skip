@@ -8,8 +8,8 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def index
-		@restaurant = Restaurant.find
-		@categories = Category.where()
+		@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		@categories = @restaurant.categories
 	end
 
 	def show
