@@ -1,5 +1,6 @@
 #inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::ItemsController < ApplicationController
+	before_action :set_restaurant
 	before_action	:set_item, only: [:show, :edit, :update, :destroy, :retire]
 	before_action :authorize?, only: [:show, :create, :edit, :update, :destroy, :retire]
 
@@ -8,13 +9,9 @@ class Admin::ItemsController < ApplicationController
 	end
 
 	def index
-		@items = Item.all
+		@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		@items = @restaurant.items
 	end
-
-  def update
- 	# duplicate
-		@item = Item.find(params[:id])
-  end
 
 	def create
 		@item = Item.new(item_params)
@@ -31,14 +28,32 @@ class Admin::ItemsController < ApplicationController
 	def show
 	end
 
+	def edit
+	end
+
+	def update
+		@item = Item.find(params[:id])
+
+		respond_to do |format|
+			if @item.update(item_params)
+				format.html { redirect_to admin_restaurant_item_path(id: @item, restaurant_slug: @restaurant.slug), notice: 'Item was successfully updated.'}
+			else
+				format.html { render :edit }
+			end
+		end
+  end
 
 	def destroy
 		if @item.destroy
-			redirect_to admin_items_path, notice: 'Item was successfully deleted.'
+			redirect_to admin_restaurant_items_path(restaurant_slug: @restaurant.slug), notice: 'Item was successfully deleted.'
 		end
 	end
 
 	private
+
+		def set_restaurant
+			@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		end
 
 		def set_item
 			@item = Item.find(params[:id])

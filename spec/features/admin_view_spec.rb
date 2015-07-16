@@ -39,10 +39,6 @@ describe 'a admin viewing the items page', type: :feature do
       expect(page.current_url).to eq(admin_dashboard_url)
       # save_and_open_page
       page.click_link('Menu Item Management')
-
-      expect(current_path).to eq(admin_items_path)
-      # save_and_open_page
-      # byebug
       expect(page).to have_content("yummy")
       page.click_link('Destroy')
       expect(page).to_not have_content("yummy")

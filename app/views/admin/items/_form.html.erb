@@ -1,6 +1,6 @@
 <div class="form-group">
 	<div class="span6 offset3">
-		<%= form_for(@item, :html => { :class => "form-horizontal"}) do |f| %>
+		<%= form_for([:admin, @item], :html => { :class => "form-horizontal"}, url: admin_restaurant_item_path(id: @item.id, restaurant_slug: @restaurant.slug)) do |f| %>
 
 			<% if @item.errors.any? %>
 				<div id="error_explanation">

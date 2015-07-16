@@ -68,4 +68,8 @@ RSpec.describe Item, :type => :model do
     result = item.orders
     expect(result.count).to eq(2)
   end
+
+  it 'responds to restaurant' do
+    expect(item).to respond_to(:restaurant)
+  end
 end

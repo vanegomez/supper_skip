@@ -13,11 +13,10 @@ describe 'a registered owner', type: :feature do
   #
   # end
 
-  it "can view registered restaurant" do
+  xit "can view registered restaurant" do
     role = Role.create(name: "customer")
     user = role.users.create(full_name: "Jeff", email: "demo+jeff@jumpstartlab.com", password: "password", display_name: "j3")
-    user.restaurants.create!(name: "Very Sweet", slug: "very-sweet" )
-
+    Restaurant.create!(name: "Very Sweet", slug: "very-sweet" )
     expect(Restaurant.count).to eq(1)
 
     visit '/very-sweet.html'

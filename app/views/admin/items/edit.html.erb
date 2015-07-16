@@ -1,10 +1,10 @@
-<%= render :partial => "shared/header" %>
+<%= render :partial => "shared/individual_header" %>
 <h1>Editing: <%= @item.title %></h1>
 
 <div class="content-wrapper formStyle">
   <%= render 'form' %>
 
   <div>
-    <%= link_to 'Back to All Items', admin_items_path %>
+    <%= link_to 'Back to All Items', admin_restaurant_items_path(restaurant_slug: @restaurant.slug) %>
   </div>
 </div>

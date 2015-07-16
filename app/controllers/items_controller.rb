@@ -1,11 +1,16 @@
 class ItemsController < ApplicationController
 
   def index
-    @categories = Category.all
-    @items = (Item.not_retired_too + Item.not_retired)
+    @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+    # @restaurant = Restaurant.find_by(slug: params[:slug])
+    @categories = @restaurant.categories
+    @items = @restaurant.items.not_retired
+    #(@categories.map {|category| category.items.not_retired_too } + @categories.items.not_retired)
   end
 
   def show
-    @item = Item.find(params[:id])
+    @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+    @item = @restaurant.items.find(params[:id])
   end
+
 end

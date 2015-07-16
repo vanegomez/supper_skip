@@ -48,4 +48,8 @@ RSpec.describe Category, :type => :model do
   it 'responds to categorizations' do
     expect(category).to respond_to(:categorizations)
   end
+
+  it 'responds to restaurant' do
+    expect(category).to respond_to(:restaurant)
+  end
 end
