@@ -29,7 +29,7 @@ describe 'a user signs in and views their user page', type: :feature do
       expect(page.current_path).to eq(user_path(user))
       page.click_link('Your Account')
       page.click_link('Sign Out')
-      expect(page.current_path).to eq(items_path)
+      expect(page.current_path).to eq(root_path)
 
     end
   end

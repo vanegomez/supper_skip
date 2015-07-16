@@ -10,7 +10,7 @@ describe 'a user viewing the cart page', type: :feature do
 
   it 'can increase the quantity of an item by one' do
     keylime
-    page.visit items_path
+    page.visit restaurant_items_path(restaurant_slug: keylime.restaurant.slug)
     click_on 'ADD TO CART'
     visit cart_path
     click_on '+'
@@ -20,7 +20,7 @@ describe 'a user viewing the cart page', type: :feature do
 
   it 'can decrease the quantity of an item by one' do
     keylime
-    page.visit items_path
+    page.visit restaurant_items_path(restaurant_slug: keylime.restaurant.slug)
     click_on 'ADD TO CART'
     visit cart_path
     click_on '+'

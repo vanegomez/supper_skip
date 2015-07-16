@@ -19,7 +19,7 @@ class Admin::ItemsController < ApplicationController
 		if @item.save
 			@item.categories_list(params['item']['categories'])
 			flash.notice = 'Item was successfully created.'
-			redirect_to admin_item_path(@item)
+			redirect_to admin_restaurant_item_path(id: @item.id, restaurant_slug: @restaurant.slug)
 		else
 			render :new
 		end

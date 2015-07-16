@@ -63,8 +63,8 @@
           <% item_id = order_item.item_id %>
           <td>
             <%= quantity = @order.order_items.select { |order_item| order_item.item_id == item_id }.count%>
-            <%= link_to "+", increment_admin_order_order_item_path(@order, order_item) %>
-            <%= link_to "-", decrement_admin_order_order_item_path(@order, order_item) %>
+            <%= link_to "+", increment_admin_restaurant_order_order_item_path(@order, order_item) %>
+            <%= link_to "-", decrement_admin_restaurant_order_order_item_path(@order, order_item) %>
           </td>
           <td><%= quantity * order_item.item.price_pie %></td>
         </tr>

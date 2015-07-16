@@ -39,8 +39,4 @@ describe 'a restaurant admin viewing the items page', type: :feature do
       expect(page).to have_content('Key-Lime')
     end
   end
-
-	xit "" do
-		visit admin_items_path
-	end
 end

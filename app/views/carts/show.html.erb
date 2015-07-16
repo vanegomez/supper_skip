@@ -57,7 +57,7 @@
         <% if current_user != nil && @total_price != 0 %>
           <%= submit_tag 'Checkout', class: "btn btn-default" %>
         <% elsif @total_price == 0 %>
-          <%= link_to 'Keep Shopping', items_path, class: "btn btn-default" %>
+          <%= link_to 'Keep Shopping', root_path, class: "btn btn-default" %>
         <% elsif %>
           <%= link_to 'Sign In', signin_path, class: "btn btn-default" %>
         <% end %>

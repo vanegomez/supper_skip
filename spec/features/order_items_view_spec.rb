@@ -25,7 +25,7 @@ describe 'the order_items view', type: :feature do
           description: 'yummy',
           price_pie: 30.00
         )
-        visit items_path(order_id: order.id)
+        visit order_items_path(order_id: order.id)
       end
 
       # the order and the item above are not connected

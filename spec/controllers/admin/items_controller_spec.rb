@@ -48,7 +48,8 @@ RSpec.describe Admin::ItemsController, :type => :controller do
 
       it "redirects to the created item" do
         post :create, {:item => item}
-        expect(response).to redirect_to admin_item_path(Item.last)
+        item = Item.last
+        expect(response).to redirect_to admin_restaurant_item_path(id: item.id, restaurant_slug: item.restaurant.id)
       end
 
       it "redirects to the new item page" do

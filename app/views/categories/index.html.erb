@@ -16,7 +16,7 @@
         <td><%= category.name %></td>
         <td>
           <% category.items.each do |item| %>|
-            <%= link_to item.title, item_path(item) %> |
+            <%= link_to item.title, restaurant_item_path(id: item.id, restaurant_slug: @restaurant.slug) %> |
           <% end %>
         </td>
       </tr>
