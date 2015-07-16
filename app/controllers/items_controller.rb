@@ -12,4 +12,5 @@ class ItemsController < ApplicationController
     @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
     @item = @restaurant.items.find(params[:id])
   end
+
 end

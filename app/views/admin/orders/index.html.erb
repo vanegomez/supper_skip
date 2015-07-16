@@ -14,11 +14,11 @@
     </thead>
 
     <tbody>
-      <td><%= link_to 'See All Orders', admin_orders_path %>(<%= @all_count %>)</td>
-      <td><%= link_to 'See Paid Orders', admin_orders_path(filter: 'paid') %>(<%= @status_counts[Order::Status::PAID] %>)</td>
-      <td><%= link_to 'See Cancelled Orders', admin_orders_path(filter: 'cancelled') %>(<%= @status_counts[Order::Status::CANCELLED] %>)</td>
-      <td><%= link_to 'See Completed Orders', admin_orders_path(filter: 'completed') %>(<%= @status_counts[Order::Status::COMPLETED] %>)</td>
-      <td><%= link_to 'See Ordered/Pending Orders', admin_orders_path(filter: 'ordered') %>(<%= @status_counts[Order::Status::ORDERED] %>)</td>
+      <td><%= link_to 'See All Orders', admin_restaurant_orders_path(restaurant_slug: @restaurant.slug) %>(<%= @all_count %>)</td>
+      <td><%= link_to 'See Paid Orders', admin_restaurant_orders_path(filter: 'paid', restaurant_slug: @restaurant.slug) %>(<%= @status_counts[Order::Status::PAID] %>)</td>
+      <td><%= link_to 'See Cancelled Orders', admin_restaurant_orders_path(filter: 'cancelled', restaurant_slug: @restaurant.slug) %>(<%= @status_counts[Order::Status::CANCELLED] %>)</td>
+      <td><%= link_to 'See Completed Orders', admin_restaurant_orders_path(filter: 'completed', restaurant_slug: @restaurant.slug) %>(<%= @status_counts[Order::Status::COMPLETED] %>)</td>
+      <td><%= link_to 'See Ordered/Pending Orders', admin_restaurant_orders_path(filter: 'ordered', restaurant_slug: @restaurant.slug) %>(<%= @status_counts[Order::Status::ORDERED] %>)</td>
     </tbody>
   </table>
 
@@ -38,14 +38,14 @@
     <tbody>
       <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.id, admin_order_path(order) %></td>
+        <td><%= link_to order.id, admin_restaurant_order_path(id: order, restaurant_slug: @restaurant.slug) %></td>
         <td><%= order.user_id %></td>
         <td><%= order.order_total %></td>
         <td><%= order.order_type.upcase %></td>
         <td><%= order.delivery_address %></td>
         <td><%= order.order_status.upcase %></td>
         <td>
-          <%= link_to "Delete", admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%= link_to "Delete", admin_restaurant_order_path(id: order, restaurant_slug: @restaurant.slug), method: :delete, data: { confirm: 'Are you sure?'} %>
         </td>
       </tr>
       <% end %>
