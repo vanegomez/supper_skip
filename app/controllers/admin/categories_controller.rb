@@ -1,5 +1,6 @@
 #inheret from Admin::AdminController and remove 'authorize?' method, check before actions
 class Admin::CategoriesController < ApplicationController
+	before_action :set_restaurant
 	before_action	:set_category, 	only: [:show, :edit, :update, :destroy]
 	before_action :authorize?
 
@@ -8,7 +9,6 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def index
-		@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
 		@categories = @restaurant.categories
 	end
 
@@ -47,6 +47,10 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	private
+
+		def set_restaurant
+			@restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
+		end
 
 		def set_category
 			@category = Category.find(params[:id])
