@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
 	def show
+    @restaurants = cart.items.group_by { |item| item.categories.first.restaurant }
 		@cart = cart
 	end
 
@@ -19,3 +20,4 @@ class CartsController < ApplicationController
 		redirect_to restaurant_items_path(restaurant_slug: slug)
 	end
 end
+

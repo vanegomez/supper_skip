@@ -1,36 +1,44 @@
 <%= render :partial => "shared/header" %>
 <h1>Order Details:</h1>
 <div class="content-wrapper formStyle">
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Pie:</th>
-        <th>Price:</th>
-        <th>Quantity:</th>
-        <th>Item Total:</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% unique_cart_items = @cart.cart_items.to_a.uniq { |cart_item| cart_item.item_id } %>
-      <% unique_cart_items.each do |cart_item| %>
+
+  <% @restaurants.each do |restaurant, items| %>
+    <h2><%= restaurant.name %></h2>
+
+    <table class='table'>
+      <thead>
         <tr>
-        <% slug = cart_item.item.categories.first.restaurant.slug %>
-          <td><%= link_to cart_item.item.title, restaurant_item_path(id: cart_item.item.id, restaurant_slug: slug) %></td>
-          <td><%= cart_item.item.price_pie %></td>
-          <% item_id = cart_item.item_id %>
-          <td>
-            <%= quantity =  @cart.cart_items.select { |cart_item| cart_item.item_id == item_id }.count%>
-            <span class='item_quantity_changer'><%= link_to '+', cart_items_path(item_id: item_id), method: :post %></span>
-            <span class='item_quantity_changer'><%= link_to '-', cart_items_path(item_id: item_id), method: :delete %></span>
-            <br/>
+          <th>Item:</th>
+          <th>Price:</th>
+          <th>Quantity:</th>
+          <th>Item Total:</th>
+        </tr>
+      </thead>
 
-          </td>
-          <td>
+      <tbody>
+      <% items.to_a.uniq.each do |item| %>
+
+        <%# unique_cart_items = @cart.cart_items.to_a.uniq { |cart_item| cart_item.item_id } %>
+        <!--<%# unique_cart_items.each do |cart_item| %>-->
+          <tr>
+          <%# slug = cart_item.item.categories.first.restaurant.slug %>
+            <td><%= link_to item.title, restaurant_item_path(id: item.id, restaurant_slug: restaurant.slug) %></td>
+            <td><%= item.price_pie %></td>
+            <%# item_id = cart_item.item_id %>
+            <td>
+              <%#= quantity =  @cart.cart_items.select { |cart_item| cart_item.item_id == item_id }.count%>
+              <%= quantity = items.count(item) %>
+              <span class='item_quantity_changer'><%= link_to '+', cart_items_path(item_id: item_id), method: :post %></span>
+              <span class='item_quantity_changer'><%= link_to '-', cart_items_path(item_id: item_id), method: :delete %></span>
+              <br/>
+            </td>
+            <td>
             <%= quantity * cart_item.item.price_pie %>
           </td>
         </tr>
       <% end %>
+
     </tbody>
   </table>
 
@@ -64,4 +72,6 @@
       </div>
     <% end %>
   </div>
+
+  <% end %>
 </div>
